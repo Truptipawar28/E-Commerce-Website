@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
+import CartContext from "../../Store/cart-context";
 
 const CartItem = (props) => {
+    const cartCtx = useContext(CartContext);
+
+    const removeProductCartHandler = () => {
+        cartCtx.removeItem(props.id);
+      };
+
     return (
         <div
             className="d-flex justify-content-between align-items-center  bg-light p-2 text-black"
@@ -35,7 +42,7 @@ const CartItem = (props) => {
                 </div>
             </div>
             <div>
-                <button className="btn btn-danger"> Remove</button>
+                <button className="btn btn-danger" onClick={removeProductCartHandler}> Remove</button>
             </div>
         </div>
     );

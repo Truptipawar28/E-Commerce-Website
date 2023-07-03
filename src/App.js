@@ -19,11 +19,10 @@ const App = () => {
     setCartIsShown(false);
   }
   return (
-    <div className="App" style={{ backgroundColor: "#84CEEB" }}>
+    <div className="App" style={{ backgroundColor: "#E57373" }}>
       <CartProvider className="App">
         <NavigationBar onCartClick={cartClickHandler}></NavigationBar>
         {cartIsShown && <Cart onCartClose={cartCloseHandler}></Cart>}
-        {/* <NavigationBar></NavigationBar> */}
         <ProductPage></ProductPage>
         <Footer></Footer>
       </CartProvider>
