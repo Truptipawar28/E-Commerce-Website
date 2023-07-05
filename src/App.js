@@ -8,6 +8,7 @@ import Cart from './components/Cart/Cart';
 import CartProvider from './Store/CartProvider';
 import About from './pages/About';
 import { Route } from 'react-router-dom';
+import Home from './pages/Home';
 
 
 
@@ -23,9 +24,12 @@ const App = () => {
     setCartIsShown(false);
   }
   return (
-    <div className="App" style={{ backgroundColor: "#84CEEB" }}>
+    <div className="App" style={{ backgroundColor: "#FFFFFF" }}>
       <CartProvider >
         {cartIsShown && <Cart onCartClose={cartCloseHandler}></Cart>}
+        <Route path="/home">
+          <Home></Home>
+        </Route>
         <Route path="/about">
           <About />
         </Route>

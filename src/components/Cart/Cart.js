@@ -57,9 +57,9 @@ const Cart = (props) => {
             <div>
                 <Modal onConfirm={backdropHandler} />
                 <Fragment>
-                <div className=" cart bg-info p-5 text-white">
+                <div className=" cart bg-warning p-5 text-dark">
                     <div className="text-end">
-                        <button className="btn btn-outline-light" onClick={cartCloseHandler}>
+                        <button className="btn btn-outline-dark" onClick={cartCloseHandler}>
                             {" "}
                             X
                         </button>

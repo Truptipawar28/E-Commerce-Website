@@ -34,7 +34,7 @@ const NavigationBar = (props) => {
               <Nav.Link
                 activeClassName="active"
                 to="/home"
-                className="me-5 nav-item fs-5 ">
+                className="me-5 nav-item fs-5">
                 Home
               </Nav.Link>
               <Nav.Link

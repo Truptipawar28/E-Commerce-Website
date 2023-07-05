@@ -51,7 +51,7 @@ const products = [
         <div
           style={{
             height: "500px",
-            backgroundColor: "#fefefe",
+            backgroundColor: "#FFA726",
           }}
           className="d-flex justify-content-center align-items-center"
         >
@@ -77,7 +77,7 @@ const products = [
           </Row>
         </Container>
         <div className="d-flex justify-content-center p-3 mt-4">
-          <Button variant="outline-primary">See the cart</Button>
+          <Button className="btn btn-warning text-dark"  variant="outline-primary">See the cart</Button>
         </div>
       </div>
     );

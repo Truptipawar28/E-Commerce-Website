@@ -24,7 +24,7 @@ const ProductCard = (props) => {
         <Card.Title>{props.title}</Card.Title>
         <div className="d-flex justify-content-between">
           <h4>Price : {props.price}</h4>
-          <Button variant="primary" onClick={addCartHandler}>Add to cart</Button>
+          <Button variant="warning" onClick={addCartHandler}>Add to cart</Button>
         </div>
       </Card.Body>
     </Card>
