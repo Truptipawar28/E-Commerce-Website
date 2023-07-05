@@ -6,6 +6,10 @@ import ProductPage from './components/ProductPage/ProductPage';
 import Footer from './components/Footer/Footer';
 import Cart from './components/Cart/Cart';
 import CartProvider from './Store/CartProvider';
+import About from './pages/About';
+import { Route } from 'react-router-dom';
+
+
 
 const App = () => {
   const [cartIsShown, setCartIsShown] = useState(false);
@@ -19,12 +23,17 @@ const App = () => {
     setCartIsShown(false);
   }
   return (
-    <div className="App" style={{ backgroundColor: "#E57373" }}>
-      <CartProvider className="App">
-        <NavigationBar onCartClick={cartClickHandler}></NavigationBar>
+    <div className="App" style={{ backgroundColor: "#84CEEB" }}>
+      <CartProvider >
         {cartIsShown && <Cart onCartClose={cartCloseHandler}></Cart>}
-        <ProductPage></ProductPage>
-        <Footer></Footer>
+        <Route path="/about">
+          <About />
+        </Route>
+        <Route path="/store">
+          <NavigationBar onCartClick={cartClickHandler}></NavigationBar>
+          <ProductPage />
+          <Footer />
+        </Route>
       </CartProvider>
     </div>
   );

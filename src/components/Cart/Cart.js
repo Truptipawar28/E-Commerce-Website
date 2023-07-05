@@ -3,6 +3,7 @@ import CartItem from "./CartItem";
 import './Cart.module.css'
 import Modal from "../UI/Modal";
 import CartContext from "../../Store/cart-context";
+import { Fragment } from "react";
 
 // const cartItem = [
 //     {
@@ -55,6 +56,7 @@ const Cart = (props) => {
         return (
             <div>
                 <Modal onConfirm={backdropHandler} />
+                <Fragment>
                 <div className=" cart bg-info p-5 text-white">
                     <div className="text-end">
                         <button className="btn btn-outline-light" onClick={cartCloseHandler}>
@@ -78,6 +80,7 @@ const Cart = (props) => {
                         <button className="btn btn-dark">Purchase</button>
                     </div>
                 </div>
+                </Fragment>
             </div>
         );
     }

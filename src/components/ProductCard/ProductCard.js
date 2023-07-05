@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { Fragment, useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import './ProductCard.module.css';
@@ -12,6 +12,7 @@ const ProductCard = (props) => {
     cartCtx.addItem({ ...props, quantity: 1 });
   };
   return (
+    <Fragment>
     <Card
       style={{
         width: "18rem",
@@ -27,6 +28,7 @@ const ProductCard = (props) => {
         </div>
       </Card.Body>
     </Card>
+    </Fragment>
   );
 }
 
