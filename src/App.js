@@ -11,6 +11,9 @@ import { Route } from 'react-router-dom';
 import Home from './pages/Home';
 import ContactUs from './pages/ContactUs';
 import axios from 'axios';
+import ProductInfo from './pages/productInfo';
+import { Switch } from 'react-router-dom/cjs/react-router-dom';
+import { Redirect } from 'react-router-dom/cjs/react-router-dom';
 
 
 
@@ -29,15 +32,19 @@ const App = () => {
   const userDetailPostHandler = (user) => {
     axios.post("https://e-commerce-project-8c250-default-rtdb.firebaseio.com/products.json",
       {
-        body: JSON.stringify(user),
+        body: JSON.stringify(userDetailPostHandler),
       })
   };
 
 
   return (
     <div className="App" style={{ backgroundColor: "#FFFFFF" }}>
+      <Switch>
       <CartProvider >
         {cartIsShown && <Cart onCartClose={cartCloseHandler}></Cart>}
+        <Route path="/" exact>
+            <Redirect to="/store"></Redirect>
+          </Route>
         <Route path="/home">
           <Home></Home>
         </Route>
@@ -49,10 +56,14 @@ const App = () => {
         </Route>
         <Route path="/store">
           <NavigationBar onCartClick={cartClickHandler}></NavigationBar>
-          <ProductPage />
+          <ProductPage openCart={cartClickHandler} />
           <Footer />
         </Route>
+        <Route path="/productdetail/:productId">
+          <ProductInfo />
+        </Route>
       </CartProvider>
+      </Switch>
     </div>
   );
 }
