@@ -1,6 +1,6 @@
 // import logo from './logo.svg';
 import './App.css';
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import NavigationBar from './components/Navbar/NavigationBar';
 import ProductPage from './components/ProductPage/ProductPage';
 import Footer from './components/Footer/Footer';
@@ -9,12 +9,14 @@ import CartProvider from './Store/CartProvider';
 import About from './pages/About';
 import { Route } from 'react-router-dom';
 import Home from './pages/Home';
+import ContactUs from './pages/ContactUs';
+import axios from 'axios';
 
 
 
 const App = () => {
   const [cartIsShown, setCartIsShown] = useState(false);
-
+  
 
   const cartClickHandler = () => {
     setCartIsShown(true);
@@ -23,6 +25,15 @@ const App = () => {
   const cartCloseHandler = () => {
     setCartIsShown(false);
   }
+
+  const userDetailPostHandler = (user) => {
+    axios.post("https://e-commerce-project-8c250-default-rtdb.firebaseio.com/products.json",
+      {
+        body: JSON.stringify(user),
+      })
+  };
+
+
   return (
     <div className="App" style={{ backgroundColor: "#FFFFFF" }}>
       <CartProvider >
@@ -32,6 +43,9 @@ const App = () => {
         </Route>
         <Route path="/about">
           <About />
+        </Route>
+        <Route path="/contact-us">
+          <ContactUs userDetail={userDetailPostHandler} />
         </Route>
         <Route path="/store">
           <NavigationBar onCartClick={cartClickHandler}></NavigationBar>

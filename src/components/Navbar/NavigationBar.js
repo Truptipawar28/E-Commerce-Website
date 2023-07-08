@@ -49,6 +49,12 @@ const NavigationBar = (props) => {
                 className="me-5 nav-item fs-5 ">
                 About
               </Nav.Link>
+              <Nav.Link
+                activeClassName="active"
+                to="/contact-us"
+                className="me-5 nav-item fs-5 ">
+                Contact Us
+              </Nav.Link>
             </Nav>
             <button className="button" onClick={cartHandler}>
               <span className="icon">
