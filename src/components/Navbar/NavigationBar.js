@@ -6,6 +6,7 @@ import CartIcon from "../Cart/CartIcon";
 import './Navbar.module.css';
 import CartContext from "../../Store/cart-context";
 import { Link } from "react-router-dom/cjs/react-router-dom";
+import {useHistory} from 'react-router-dom'
 
 const NavigationBar = (props) => {
   const cartHandler = () => {
@@ -13,6 +14,15 @@ const NavigationBar = (props) => {
   }
 
   const cartCtx = useContext(CartContext);
+
+  const isLoggedIn = cartCtx.isLoggedIn;
+  const history = useHistory();
+
+  const logoutHandler = () => {
+    cartCtx.logout();
+    history.replace("/login");
+  };
+
   let quantity = 0;
   cartCtx.products.forEach((product) => {
     quantity = quantity + (Number(product.quantity));
@@ -32,37 +42,55 @@ const NavigationBar = (props) => {
               E-Commerce
             </Navbar.Brand>
             <Nav className="ms-auto">
+              {isLoggedIn && (
               <Link
                 activeClassName="active"
                 to="/home"
                 className="me-5 nav-item fs-5">
                 Home
               </Link>
+              )}
+              {isLoggedIn && (
               <Link
                 activeClassName="active"
                 to="/store"
                 className="me-5 nav-item fs-5 ">
                 Store
               </Link>
+              )}
+              {isLoggedIn && (
               <Link
                 activeClassName="active"
                 to="/about"
                 className="me-5 nav-item fs-5 ">
                 About
               </Link>
+              )}
+              {isLoggedIn && (
               <Link
+              activeClassName="active"
+              to="/contact-us"
+              className="me-5 nav-item fs-5 ">
+              Contact Us
+            </Link>
+              )}
+              {isLoggedIn && (
+                <Link
                 activeClassName="active"
-                to="/contact-us"
+                to="/about"
                 className="me-5 nav-item fs-5 ">
-                Contact Us
-              </Link>
+                 Login
+               </Link>
+              )}
             </Nav>
+            {isLoggedIn && (
             <button className="button" onClick={cartHandler}>
               <span className="icon">
                 <CartIcon />
               </span>
               <div className="badge">{quantity}</div>
             </button>
+            )}
           </Container>
         </Navbar>
         <div

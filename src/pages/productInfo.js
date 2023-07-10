@@ -5,7 +5,6 @@ import CartContext from "../Store/cart-context";
 import { Col, Container, Row } from "react-bootstrap";
 import { BsFillStarFill, BsFill4SquareFill } from "react-icons/bs";
 import Footer from "../components/Footer/Footer";
-import { MDBIcon } from "mdb-react-ui-kit";
 
 const ProductInfo = () => {
     const ctx = useContext(CartContext);

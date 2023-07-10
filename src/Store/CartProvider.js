@@ -42,8 +42,22 @@ const CartProvider = (props) => {
         },
       ];
 
+  const intialToken = localStorage.getItem('token');
   const [products, updateProducts] = useState([]);
+  const [token,  setToken] = useState(intialToken);
 
+  const userIsLoggedIn = !!token;
+
+  const loginHandler = (token) => {
+      setToken(token);
+      localStorage.setItem('token', token);  //setItem is allows us to store key value pair in that localstorage
+  };
+
+  const logoutHandler = () => {
+      setToken(null);
+      localStorage.removeItem('token');
+  };
+  
   const addItemToCartHandler = (product) => {
       let idx = products.findIndex((ele) => {
           return ele.id === product.id;
@@ -67,11 +81,16 @@ const CartProvider = (props) => {
   };
 
   const cartContext = {
+    token: token,
+      isLoggedIn: userIsLoggedIn,
+      login: loginHandler,
+      logout: logoutHandler,
     productDetails: productDetails,
       products: products,
       addItem: addItemToCartHandler,
       removeItem: removeItemFromCartHandler,
   };
+  
   return (
       <CartContext.Provider value={cartContext}>
           {props.children}
