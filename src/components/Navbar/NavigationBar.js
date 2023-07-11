@@ -10,7 +10,8 @@ import {useHistory} from 'react-router-dom'
 
 const NavigationBar = (props) => {
   const cartHandler = () => {
-    props.onCartClick();
+    // props.onCartClick();
+    cartCtx.cartOpen();
   }
 
   const cartCtx = useContext(CartContext);

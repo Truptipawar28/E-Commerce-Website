@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { Fragment, useContext } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -47,15 +47,18 @@ import CartContext from "../../Store/cart-context";
 //   ];
   
   const ProductPage = (props) => {
+    const cartCtx = useContext(CartContext);
+
     const onClickHandler = () => {
-      props.openCart();
+      // props.openCart();
+      cartCtx.cartOpen();
     };
     const ctx = useContext(CartContext);
     // console.log(ctx.productDetails)
   
     return (
       <div>
-        <div
+        {/* <div
           style={{
             height: "500px",
             backgroundColor: "#FFA726",
@@ -65,7 +68,8 @@ import CartContext from "../../Store/cart-context";
           <h1 style={{ fontSize: "80px", fontFamily: "brush-script" }}>
             E-Commerce-Store
           </h1>
-        </div>
+        </div> */}
+        <Fragment>
         <Container>
           <Title>Music collections</Title>
           <Row>
@@ -87,6 +91,7 @@ import CartContext from "../../Store/cart-context";
         <div className="d-flex justify-content-center p-3 mt-4">
           <Button className="btn btn-warning text-dark"  variant="outline-primary" onClick={onClickHandler}>See the cart</Button>
         </div>
+        </Fragment>
       </div>
     );
   }

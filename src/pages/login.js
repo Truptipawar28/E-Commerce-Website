@@ -1,4 +1,4 @@
-import { useContext, useRef } from "react"
+import { Fragment, useContext, useRef } from "react"
 import { useHistory } from "react-router-dom/cjs/react-router-dom";
 import CartContext from "../Store/cart-context";
 import NavigationBar from "../components/Navbar/NavigationBar";
@@ -16,7 +16,8 @@ const LoginForm = () => {
 
         const enteredEmail = emailInputRef.current.value;
         const enteredPassword = passwordINputRef.current.value;
-
+        console.log(enteredEmail);
+        console.log(enteredPassword);
 
         fetch('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBFLeYQoTu8AR2Uz2H5m_c7ejicoZ_MHck', {
             method: 'POST',
@@ -36,7 +37,7 @@ const LoginForm = () => {
             } else {
                 return res.json().then((data) => {
                     let errorMessage = 'Authentication failed!';
-
+                    console.log(data.error.message);
                     throw new Error(errorMessage);
                 })
             }
@@ -51,9 +52,9 @@ const LoginForm = () => {
     }
 
     return(
-        <div>
+        <Fragment>
         <NavigationBar></NavigationBar>
-        <div className="form">
+        <div className="form shadow">
             <h2 className="text-center">Login</h2>
             <form onSubmit={submitHandler}>
                 <div className="control">
@@ -70,7 +71,7 @@ const LoginForm = () => {
                 </div>
             </form>
         </div> 
-    </div>
+    </Fragment>
     )
 };
 

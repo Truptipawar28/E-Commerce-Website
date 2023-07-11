@@ -20,7 +20,7 @@ import CartContext from './Store/cart-context';
 const App = () => {
   const [cartIsShown, setCartIsShown] = useState(false);
   const cartCtx = useContext(CartContext);
-  const loggedIn = cartCtx.isLoggedIn;
+  const isloggedIn = cartCtx.isLoggedIn;
   
 
   const cartClickHandler = () => {
@@ -41,9 +41,9 @@ const App = () => {
 
   return (
     <div className="App" style={{ backgroundColor: "#FFFFFF" }}>
-      <CartProvider >
+    
+      {cartCtx.cart && <Cart></Cart>}
       <Switch>
-        {cartIsShown && <Cart onCartClose={cartCloseHandler}></Cart>}
         <Route path="/" exact>
             <Redirect to="/store"></Redirect>
           </Route>
@@ -61,17 +61,19 @@ const App = () => {
           <ProductPage openCart={cartClickHandler} />
           <Footer />
         </Route>
+        
         <Route path="/productdetail/:productId">
           <ProductInfo />
         </Route>
-        <Route path="/login">
+        {!isloggedIn && (
+          <Route path="/login">
           <LoginForm />
         </Route>
+        )}
           <Route path="*">
             <Redirect to="/login"></Redirect>
           </Route>
         </Switch>
-      </CartProvider>
     </div>
   );
 }
